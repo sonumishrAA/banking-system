@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title><%= customer.name %></title>
+</head>
+<body>
+    <h1>Customer: <%= customer.name %></h1>
+    <p>Email: <%= customer.email %></p>
+    <p>Balance: $<%= customer.balance %></p>
+
+    <h2>Transfer Money</h2>
+    <form action="/transfer" method="POST">
+        <input type="hidden" name="sender_id" value="<%= customer.id %>">
+        <label for="receiver_id">Select Customer:</label>
+        <select name="receiver_id" id="receiver_id">
+            <% customers.forEach(c => { %>
+                <% if (c.id !== customer.id) { %>
+                    <option value="<%= c.id %>"><%= c.name %></option>
+                <% } %>
+            <% }) %>
+        </select>
+        <label for="amount">Amount:</label>
+        <input type="number" name="amount" step="0.01" required>
+        <button type="submit">Transfer</button>
+    </form>
+
+    <a href="/customers">Back to All Customers</a>
+</body>
+</html>

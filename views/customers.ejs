@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Customers</title>
+</head>
+<body>
+    <h1>All Customers</h1>
+    <ul>
+        <% customers.forEach(customer => { %>
+            <li><a href="/customer/<%= customer.id %>"><%= customer.name %></a> - $<%= customer.balance %></li>
+        <% }) %>
+    </ul>
+    <a href="/">Home</a>
+</body>
+</html>
